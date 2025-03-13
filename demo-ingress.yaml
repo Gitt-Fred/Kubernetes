@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo-ingress
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing  # Only needed if using AWS ALB
+spec:
+  ingressClassName: nginx  # Uses NGINX Ingress Controller
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: demo-service.default  # Routes to Kubernetes default ClusterIP
+            port:
+              number: 80

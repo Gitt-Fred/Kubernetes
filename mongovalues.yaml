@@ -1,0 +1,27 @@
+global:
+ storageClass: mongodb-ebs-sc
+
+# Architecture configuration
+architecture: replicaset  
+replicaCount: 2
+replicaSetName: rsmongo0
+
+# Authentication settings
+auth:
+  enabled: true  
+  existingSecret: mongodb-admin-secret  
+  
+
+# Persistence configuration
+persistence:
+  enabled: true    
+  size: 16Gi  
+
+# Resource settings appropriate for production use
+resources:
+  requests:
+    memory: 1.5Gi
+    cpu: 400m
+  limits:
+    memory: 2.5Gi
+    cpu: 800m
